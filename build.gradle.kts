@@ -12,7 +12,11 @@ version = "1.0.0"
 idea {
     module {
         isDownloadSources = true
-    }
+     }
+}
+
+kotlin {
+    jvmToolchain(21)
 }
 
 repositories {
