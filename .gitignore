@@ -2,3 +2,5 @@
 /.kotlin
 /.gradle
 /build
+
+**/*.iml
