@@ -1,0 +1,28 @@
+name: Build Native
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-native:
+    name: Build Native
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull Repository
+        uses: actions/checkout@v4
+
+      - name: Setup GraalVM
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: "21"
+          cache: "gradle"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build Native
+        uses: gradle build -Dquarkus.native.enabled=true -Dquarkus.package.jar.enabled=false
