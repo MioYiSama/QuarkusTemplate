@@ -1,9 +1,8 @@
 name: Build Native
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+
 
 jobs:
   build-native:
@@ -23,6 +22,8 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: current
 
       - name: Build Native
         run: gradle build "-Dquarkus.native.enabled=true" "-Dquarkus.package.jar.enabled=false"
